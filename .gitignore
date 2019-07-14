@@ -1,0 +1,5 @@
+build/
+.build
+.vscode
+code.hex
+teensy_loader_cli
