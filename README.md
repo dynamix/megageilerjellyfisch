@@ -1,22 +1,19 @@
-             _/|       |\_
-            /  |       |  \
-           |    \     /    |
-           |  \ /     \ /  |
-           | \  |     |  / |
-           | \ _\_/^\_/_ / |
-           |    --\//--    |
-            \_  \     /  _/
-              \__  |  __/
-                 \ _ /
-                _/   \_   Project Phoenix (aka Hugo) ;-)
-               / _/|\_ \  
-                /  |  \   
-                 / v \
+         .-;':':'-.
+        {'.'.'.'.'.}
+         )        '`.
+        '-. ._ ,_.-='
+          `). ( `);(
+          ('. .)(,'.)
+           ) ( ,').(
+          ( .').'(').
+          .) (' ).('
+           '  ) (  ).
+            .'( .)'
+              .).'
 
+# megageilerjellyfisch
 
-# megageilervogel
-
-A bird turned dragon (in its second year).
+Birds that became dragons are so yesterday. Deep sea baby!
 
 ## Prerequisites 
 
@@ -77,3 +74,12 @@ make deploy
 # Serial port on Pi
 
 TODO
+
+
+
+# List of modes we want to do
+
+- mode that can be steered by buttons! i.e. effects mixer
+- streaming to the outside mode
+- to soemthing with CRGB HeatColor( uint8_t temperature);
+- white pallet mode!

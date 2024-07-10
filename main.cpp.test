@@ -1,0 +1,14 @@
+#include "WProgram.h"
+
+void setup(void)
+{
+  pinMode(13, OUTPUT);
+}
+
+void loop(void)
+{
+  digitalWrite(13, HIGH);
+  delay(50);
+  digitalWrite(13, LOW);
+  delay(50);
+}

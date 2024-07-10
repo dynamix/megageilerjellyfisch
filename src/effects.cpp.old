@@ -1,0 +1,133 @@
+void moveToOuter()
+{
+  static int x = 0;
+  static int maxX = 255;
+  x += 3;
+  if (x >= maxX)
+  {
+    x = 0;
+    maxX -= 5;
+
+    if (maxX < 0)
+    {
+      maxX = 255;
+      clear();
+    }
+  }
+
+  int idx = lwFrontInner.lerp(x);
+  fadeToBlackBy(leds + lwFrontInner.start, map(maxX, 0, 255, 0, lwFrontInner.size), 15);
+  leds[idx] = CRGB::Red;
+
+  // Serial.print("x=");
+  // Serial.print(x);
+  // Serial.print(" maxx=");
+  // Serial.print(maxX);
+  // Serial.print(" idx=");
+  // Serial.print(idx);
+
+  // Serial.print(" start=");
+  // Serial.print(lwFrontInner.start);
+
+  // Serial.print(" mapped=");
+  // Serial.println(map(maxX, 0, 255, 0, lwFrontInner.size));
+}
+
+
+void fiberBlinkSetup()
+{
+  FastLED.setBrightness(255);
+  currentDelay = 5;
+  usePotentiometer = 0;
+  shouldClear = true;
+  // fiberHead.setBrightness(0);
+  // fiberTail.setBrightness(0);
+}
+void fiberBlink()
+{
+  int fiber = random(0, 4 + 4 + 2);
+  // fiberHead.setBrightness(0);
+  // fiberTail.setBrightness(0);
+  if (fiber < 4)
+  {
+    leds[fiberleft(fiber)] = CRGB(255, 255, 255);
+    // leds[fiberleft(fiber)] = CRGB(0, 0, 255);
+  }
+  else if (fiber >= 4 && fiber < 8)
+  {
+    // leds[fiberright(fiber - 4)] = CRGB(255, 0, 0);
+    leds[fiberright(fiber - 4)] = CRGB(255, 255, 255);
+  }
+  else if (fiber == 8)
+  {
+    // fiberTail.setPixelColor(0, 255, 255, 255);
+    // fiberTail.setBrightness(200);
+  }
+  else if (fiber == 9)
+  {
+    // fiberHead.setPixelColor(0, 255, 255, 255);
+    // fiberHead.setBrightness(100);
+  }
+
+  // fiberHead.show();
+  // fiberTail.show();
+}
+
+void fiberPulseSetup()
+{
+  usePixies = 1;
+  FastLED.setBrightness(255);
+  currentDelay = 10;
+  usePotentiometer = 0;
+  shouldClear = true;
+  // fiberHead.setBrightness(0);
+  // fiberTail.setBrightness(0);
+}
+void fiberPulse()
+{
+  static uint8_t hue = 0;
+  static uint8_t pulse = 255;
+  static int8_t dir = -1;
+  static int dirs[10] = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
+  static byte pulses[10] = {random8(), random8(), random8(), random8(), random8(), random8(), random8(), random8(), random8(), random8()};
+
+  hue++;
+  for (int i = 0; i < 10; i++)
+  {
+    pulses[i] += dirs[i];
+
+    if (pulses[i] < 10)
+    {
+      dirs[i] = 1;
+    }
+    if (pulses[i] > 253)
+    {
+      dirs[i] = -1;
+    }
+
+    CRGB c = CHSV(16 * i + hue, 240, pulses[i]);
+
+    if (i < 4)
+    {
+      leds[fiberleft(i)] = c;
+      // leds[fiberleft(fiber)] = CRGB(0, 0, 255);
+    }
+    else if (i >= 4 && i < 8)
+    {
+      // leds[fiberright(fiber - 4)] = CRGB(255, 0, 0);
+      leds[fiberright(i - 4)] = c;
+    }
+    else if (i == 8)
+    {
+      // fiberTail.setPixelColor(0, c.r, c.g, c.b);
+      // fiberTail.setBrightness(255);
+    }
+    else if (i == 9)
+    {
+      // fiberHead.setPixelColor(0, c.r, c.g, c.b);
+      // fiberHead.setBrightness(255);
+    }
+  }
+  // fiberHead.show();
+  // fiberTail.show();
+}
